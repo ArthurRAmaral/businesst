@@ -9,17 +9,28 @@
     <link rel="stylesheet" href="css/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700|Roboto:400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Amatic+SC:400,700" rel="stylesheet">
+    <script src="dblogin.js"></script>
+    <link rel="shortcut icon" href="img/favicon.ico" />
     <script>
         function valida() {
             var email = document.getElementById("email").value;
             var senha = document.getElementById("senha").value;
-            var user_info = { email: "henrique@gmail.com", senha: "senha" };
+            var user_info = dblog;
+            let val = 0;
 
-            if (email == user_info.email && senha == user_info.senha) {
-                location.href = "sistema.html"
+            for (i = 0; i < user_info.data.length; i++) {
+                if (email == user_info.data[i].email) {
+                    val = 1;
+                    if (senha == user_info.data[i].senha) {
+                        location.href = "./system/index.html"
+                    }
+                    else {
+                        alert("Usuário ou Senha inválido(s).");
+                    }
+                }
             }
-            else {
-                alert("Usuário ou senha inválido(s).")
+            if (val == 0) {
+                alert("Usuário não cadastrado")
             }
         }
     </script>
